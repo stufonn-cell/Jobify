@@ -21,22 +21,15 @@ Este proyecto fue originalmente alojado en otra cuenta de GitHub bajo el usuario
 
 - Generación dinámica de vacantes con base en una plantilla predefinida.
 - Formulario simple para ingresar datos de cada vacante.
-- Exportación a múltiples formatos: `.md`, `.txt`, `.pdf` (opcional).
-- Personalización de secciones como:
-  - Requisitos
-  - Descripción del cargo
-  - Ciudad / Modalidad (presencial, híbrido, remoto)
-  - Nivel salarial
-  - Contacto o método de aplicación
 
 ---
 
 ## 🛠️ Tecnologías utilizadas
 
-- Lenguaje base: Python / JavaScript (dependiendo del stack que hayas usado)
-- UI: HTML + CSS / Bootstrap (si aplica)
-- PDF export: `reportlab` / `jsPDF` (opcional)
-- Framework: Ninguno / Flask / Node.js (dependiendo de tu implementación real)
+- Lenguaje base: Python 
+- UI: HTML + CSS + Bootstrap
+- PDF export: `reportlab` / `jsPDF` 
+- Framework: Django
 
 ---
 
