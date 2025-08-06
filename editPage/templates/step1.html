@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'editPage.css' %}">
+
+    <!-- Boostrap CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- Lato font CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <script src="{% static 'scripts/editPage.js'%}"></script>
+
+    <!--HTML CANVAS LIBRARY TO GENERATE IMAGES-->    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+
+
+    <title>Crea tu vacante</title>
+  
+</head>
+<body>
+    <header class="main-header">
+        
+        <div class="sub-div-header  ">
+            <a href="/" class="mg-logo">
+                <img src="{% static 'images/Magneto_light.png'%}" alt="logo" width="130">
+            </a>
+            <div class="step-indicator">
+                <p>
+                    paso {{current_step}} de 3 <br>
+                    <span>{{step_text}}</span>
+                </p>
+                
+            </div>
+        </div>
+        <nav class="header-nav">
+            <img src="{% static 'images/Jobify_Logo.png'%}" alt="Jobify_Logo"  class="jb-logo" width="80">
+            <a href="" class="profile-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                  </svg>
+            </a>
+        </nav>
+    </header>
+
+    <div class="pr-div">
+        <div class="pr-bar">
+            <div class="pr" id="prBar"></div>
+        </div>
+        
+    </div>
+
+    <section class="edit-section">
+
+        <div class="app-content">
+            {% block content %}
+
+            {% if current_step == 1%}
+            <script>
+                progressIn(1);
+            </script>
+            <script>
+                function updatePreview() {
+                var title = document.getElementById('vc-title').value;
+                var desc = document.getElementById('vc-body').value;
+                var city = document.getElementById('vc-city').value;
+            
+                // Reemplazar los saltos de línea con <br>
+                var formattedDesc = desc.replace(/\n/g, '<br>');
+            
+                var previewContent = "<h2>" + title + "</h2>";
+                previewContent += "<h3>" + formattedDesc + "</h3>";
+                previewContent += "<h4>" + city + "</h4>";
+            
+                document.getElementById('vacancy-container').innerHTML = previewContent;
+            } 
+            
+            window.onload = updatePreview;
+                
+            </script>
+            {% endif %}
+
+            <h2>Completa los datos de la vacante</h2>
+            
+            <form method="POST" enctype="multipart/form-data" class="step1-form">{% csrf_token %}
+                <div class="text-inputs">
+                    <input type="text" name="title" placeholder="Encabezado de la vacante" maxlength="50" oninput="updatePreview()" id="vc-title">
+                    <textarea name="desc" placeholder="Cuerpo de la vacante" oninput="updatePreview()" maxlength="340" id="vc-body" ></textarea>
+                    
+                    <input type="text" name="city" placeholder="Ciudad donde aplica" maxlength="50" oninput="updatePreview()" id="vc-city">
+
+                </div>
+               
+                <button type="submit" class="submit-btn">
+                    Siguiente
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+                      </svg>
+                </button>
+            </form>
+
+            {% endblock %}
+
+        </div>
+        <div class="preview">
+
+            
+            <h2>Plantilla: {{template.name}}</h2>
+            <div class="vacancy-preview" id="vacancy-prev" style="--vc-preview-emphasis-color: {{template.color}}; --vc-text-font-color: {{template.font_color}}; ">
+                {% if template.brand_logo %}
+                <div class="vacancy-logo">
+                   
+                    <img src="{{template.brand_logo.url}}" alt="">
+                </div>
+                     
+                {% endif  %}
+                
+                <div class="vacancy-container" id="vacancy-container" style="--vc-text-font: {{template.font}}">
+
+                   
+
+                </div>
+                <div class="back-square">
+                    {% if page_obj %}
+                    {% for avatar in page_obj %}
+                        <img src="{{avatar.avatar_image.url}}" alt="Avatar" class="vacancy-avatar">
+                    {% endfor %}
+                        {% if current_step == 1%}
+                        <div class="pagination">
+                            <div class="step-links">
+                                {% if page_obj.has_previous %}
+                             
+                                   
+                                    <a href="?page={{ page_obj.previous_page_number }}">
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16" style="margin-right: 5px;">
+                                            <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                            <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                                          </svg>
+                                          Prev
+                                    </a>
+                                    
+                                {% endif %}
+        
+                                <span class="current">
+                                    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                                </span>
+        
+                                {% if page_obj.has_next %}
+                                    <a href="?page={{ page_obj.next_page_number }}">
+                                        Sig
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16" style="margin-left: 5px;">
+                                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                                      </svg></a>
+                                    
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                        
+       
+                </div>
+                
+            </div>
+
+
+            <div class="preview-zoom-opt">
+                <button onclick="zoomIn()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                        <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+                        <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"/>
+                      </svg>
+                </button>
+                <button onclick="zoomOut()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-zoom-out" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                        <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+                        <path fill-rule="evenodd" d="M3 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                      </svg>
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+   
+    
+</body>
+</html>

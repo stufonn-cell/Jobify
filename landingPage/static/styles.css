@@ -1,0 +1,251 @@
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', 'sans-serif';
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.button-slider{
+    width: 100%;
+    min-height: 30px;
+    padding: 10px 0 0 10px;
+    background-color: #04004D;
+}
+.button-slider div {
+    padding: 3px;
+    border-radius: 8px;
+    width: 12%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff34;
+}
+.employement-button, .company-button{
+    flex: 1 1 auto;
+    padding: 0 3px 0 3px;;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    height: 25px;
+}
+.employement-button{
+    background-color: transparent;
+   
+}
+.company-button{
+    background-color: #04004D;
+    font-weight: bolder;
+}
+
+
+.ld-main-header {
+    width: 100%;
+    padding: 20px;
+    height: 80px;
+    display:flex;
+    align-items: center;
+    background-color: #04004D;
+}
+.ld-main-header-logo{
+    width: 110px;
+    height: 30px;
+}
+
+.ld-main-header nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.header-nav ul{
+    margin: 0;
+    margin-left: 25%;
+    width: 100%;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+.header-nav li{
+    flex: 1 1 auto;
+    margin-right: 5rem;
+    width: 80x;
+    padding: 5px;
+}
+
+
+.ld-main-header-a {
+    width: 100%;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+    position: relative;
+} 
+
+.ld-main-header-a::before{
+    content: " ";
+    position:absolute;
+    bottom: -15px;
+    left: -10px;
+    opacity: 0;
+    width: 0;
+    border: solid 1px #fff;
+    transition: .3s;
+}
+
+.ld-main-header-a:hover:before{
+    opacity: 100;
+    width: 120%;
+    transition: .4s ease-out;
+}
+.nav-loggout-button {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 20%;
+    padding: 3px 6px 3px 6px;
+    border-radius: 20px;
+    transition: .5s;
+}
+.nav-loggout-button:hover{
+    background-color: #fff;
+    color: #333;
+    transition: .5s;
+}
+.banner-section {
+    width: 100%;
+    height: 350px;
+    background-color: #04004D;
+    padding: 20px;
+    display:flex;
+    align-items: center;
+
+}
+
+.img-slider {
+    width: 30%;
+    height: 100%;
+    border-radius: 10px;
+    margin-left: 15%;
+    overflow: hidden;
+}
+
+.banner-section p{
+    margin-right: 20%;
+    font-size: 20px;
+    color: #fff;
+}
+
+
+.vc-creation-section {
+    
+    width: 100%;
+    height: 300px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s ease-in;
+}
+
+.vc-creation-section:hover {
+    
+    background-color: #eaeafa;
+    transition: .3s ease-in-out;
+}
+
+.vc-creation-button{
+    font-size: 60px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    transition: .2s ease-out;
+}
+.vc-creation-button:hover{
+    font-size: 70px;
+    transition: .2s ease-in;
+}
+
+
+
+
+.ld-footer {
+    padding: 40px 20px 20px 20px;
+    width: 100%;
+    height: 190px;
+    background-color: #f4f4fa;
+    display: flex;
+}
+
+.ld-footer-logo{
+    width: 110px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+.logo-social-footer{
+    display: flex;
+    flex-direction: column;
+}
+.social-footer {
+display: flex;
+}
+
+.social-footer a {
+    margin-right: 30px;
+}
+
+.links-container-footer {
+    display:flex;
+    flex-direction: column;
+    margin-left: 20%;
+    overflow: hidden;
+}
+
+.ld-footer div p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+
+}
+
+.ld-footer div a {
+    font-size: 13px;
+    color: #474747;
+    border: solid 1px transparent;
+}
+.ld-footer div a:hover {
+    border-bottom: solid 1px #333;
+    cursor: pointer;
+}
+.jb-brand-container{
+    display: flex;
+    align-items: end;
+    margin-left: 20%;
+}
+
+
+.jb-logo-footer{
+    width: 120px;
+    height: 110px;
+}
+
+.app-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.template-form {
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    
+}

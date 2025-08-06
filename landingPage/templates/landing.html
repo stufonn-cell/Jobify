@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap inicilization via CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'history_page.css' %}">
+    <!--Lato Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <title>Magneto Jobify</title>
+</head>
+    <body>
+        <!--Bootstrap js inicialization-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
+        <div class="button-slider">
+            <div>
+                <button class="employement-button">Busco Empleo</button>
+                <button style="margin-left: 10px;" class="company-button">Soy Empresa</button>
+            </div>
+            
+        </div>
+        <header class="ld-main-header">
+            <img src="{% static 'images/LogoEmpresas.png'%}" alt="header-logo" class="ld-main-header-logo">
+
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <a href="/" class="ld-main-header-a" >Crear una Vacante</a>
+            
+                    </li>
+    
+                    <li>
+
+                        <a href="/historial/" class="ld-main-header-a">Historial</a>
+
+                    </li>
+    
+                    <li>
+
+                        <a href="" class="ld-main-header-a">Sobre Jobify</a>
+
+                    </li>
+                
+                    <a href="" class="nav-loggout-button">
+
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                          </svg>
+                        Salir
+                    </a>
+    
+                </ul>
+                
+                
+                
+            </nav>
+
+        </header>
+    {% block content %}
+
+        <section class="banner-section">
+            <p>Crear las Vacantes que tu empresa necesita nunca fue tan fácil. <br>
+                Selecciona + para comenzar</p>
+            <div class="img-slider">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{% static 'images/eje1.jpeg'%}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/ej2.jpeg'%}" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/ej3.jpeg'%}" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            
+
+        </section>
+        <section class="vc-creation-section">
+            <a href="nueva_vacante/paso1/" class="vc-creation-button">+</a>
+        </section>
+        {% endblock content %}
+
+        <footer class="ld-footer">
+            <div class="logo-social-footer">
+                <img src="{% static 'images/Logo.png'%}" alt="footer-logo" class="ld-footer-logo">
+                 <p>Síguenos: </p>
+                <div class="social-footer">
+                    
+                    <a>Facebook</a>
+                    <a>Linkedin</a>
+                    <a>X</a>
+                </div>
+
+            </div>
+        
+            <div class="links-container-footer">
+                <p>Personas</p>
+                <a>Link</a>
+                <a>Link</a>
+                <a>Link</a>
+                <a>Link</a>
+            </div>
+            <div class="links-container-footer">
+                <p>Magneto</p>
+                <a>Link</a>
+                <a>Link</a>
+                <a>Link</a>
+                <a>Link</a>
+            </div>
+            <div class="jb-brand-container">
+                <p style="margin-right: 20px; font-size: 13px; font-weight: 100; ">Powered by </p>
+                <img src="{% static 'images/Jobify_Logo.png'%}" alt="jobify-logo" class="jb-logo-footer">
+            </div>
+            
+        </footer>
+         
+        
+    </body>
+</html>

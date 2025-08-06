@@ -1,0 +1,61 @@
+{% extends 'step1.html' %}
+{% load static %}
+
+
+{% block content %}
+
+{% if current_step == 3 %}
+        <script>
+            progressIn(3)
+        </script>
+        <script>
+            function updatePreview() {
+                var title = "{{template.title}}";
+                var desc = "{{ template.desc|escapejs }}";
+                var city = "{{template.city}}";
+
+                var formattedDesc = desc.replace(/\n/g, '<br>');
+                console.log(formattedDesc)
+
+                var previewContent = "<h2>" + title + "</h2>";
+                previewContent += "<h3>" + formattedDesc + "</h3>";
+                previewContent += "<h4>" + city + "</h4>";
+
+                document.getElementById('vacancy-container').innerHTML = previewContent;
+                
+            } 
+            window.onload = updatePreview;
+        
+          </script>
+{% endif %}
+
+<form method="POST" class="download-form" id="imgForm"  >
+    {% csrf_token %}
+    <button  type="button" onclick="generateImage()">
+        Descargar Imagen
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+          </svg>
+          <input type="hidden" name="imgData" id="imgData"  style="display: none;">
+    </button>
+     
+        
+        
+</form>
+<div style="display: flex; justify-content: space-between; width: 90%;">
+    <button type="submit" class="back-btn" onclick="history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+          </svg>
+          Atrás
+    </button>
+    <a type="submit"  href="/" class="submit-btn" name="next-step">
+        Finalizar
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+          </svg>
+        </a>
+  </div>
+
+{% endblock %}
